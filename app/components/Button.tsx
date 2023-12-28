@@ -88,7 +88,7 @@ export function Button(props: ButtonProps) {
     ...rest
   } = props
 
-  const preset: Presets = props.preset ?? "default"
+  const preset: Presets = props.preset ?? "outlined"
   function $viewStyle({ pressed }: PressableStateCallbackType) {
     return [
       $viewPresets[preset],
@@ -125,12 +125,12 @@ export function Button(props: ButtonProps) {
 
 const $baseViewStyle: ViewStyle = {
   minHeight: 56,
-  borderRadius: 4,
+  borderRadius: 100,
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "row",
   paddingVertical: spacing.sm,
-  paddingHorizontal: spacing.sm,
+  paddingHorizontal: spacing.xl,
   overflow: "hidden",
 }
 
@@ -148,12 +148,12 @@ const $rightAccessoryStyle: ViewStyle = { marginStart: spacing.xs, zIndex: 1 }
 const $leftAccessoryStyle: ViewStyle = { marginEnd: spacing.xs, zIndex: 1 }
 
 const $viewPresets = {
-  default: [
+  outlined: [
     $baseViewStyle,
     {
-      borderWidth: 1,
-      borderColor: colors.palette.neutral400,
-      backgroundColor: colors.palette.neutral100,
+      borderWidth: 2,
+      borderColor: colors.palette.neutral100,
+      backgroundColor: colors.palette.overlay20,
     },
   ] as StyleProp<ViewStyle>,
 
@@ -166,19 +166,24 @@ const $viewPresets = {
 }
 
 const $textPresets: Record<Presets, StyleProp<TextStyle>> = {
-  default: $baseTextStyle,
+  outlined: [
+    $baseTextStyle,
+    {
+      fontFamily: typography.primary.semibold,
+    },
+  ],
   filled: $baseTextStyle,
   reversed: [$baseTextStyle, { color: colors.palette.neutral100 }],
 }
 
 const $pressedViewPresets: Record<Presets, StyleProp<ViewStyle>> = {
-  default: { backgroundColor: colors.palette.neutral200 },
+  outlined: { backgroundColor: colors.palette.overlay50 },
   filled: { backgroundColor: colors.palette.neutral400 },
   reversed: { backgroundColor: colors.palette.neutral700 },
 }
 
 const $pressedTextPresets: Record<Presets, StyleProp<TextStyle>> = {
-  default: { opacity: 0.9 },
+  outlined: { opacity: 0.9 },
   filled: { opacity: 0.9 },
   reversed: { opacity: 0.9 },
 }

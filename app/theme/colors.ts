@@ -33,8 +33,8 @@ const palette = {
   angry100: "#F2D6CD",
   angry500: "#C03403",
 
-  overlay20: "rgba(25, 16, 21, 0.2)",
-  overlay50: "rgba(25, 16, 21, 0.5)",
+  overlay20: "hsla(0, 0%, 100%, 0.2)",
+  overlay50: "hsla(0, 0%, 100%, 0.5)",
 } as const
 
 export const colors = {
@@ -51,7 +51,7 @@ export const colors = {
   /**
    * The default text color in many components.
    */
-  text: palette.neutral800,
+  text: palette.neutral100,
   /**
    * Secondary text information.
    */
@@ -81,4 +81,5 @@ export const colors = {
    *
    */
   errorBackground: palette.angry100,
+  gradient: ["#7F3CD3", "#F16476", "#FDC299"],
 }
