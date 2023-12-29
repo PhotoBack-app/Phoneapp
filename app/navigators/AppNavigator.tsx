@@ -4,19 +4,13 @@
  * Generally speaking, it will contain an auth flow (registration, login, forgot password)
  * and a "main" flow which the user will use once logged in.
  */
-import {
-  DarkTheme,
-  DefaultTheme,
-  NavigationContainer,
-  NavigatorScreenParams,
-} from "@react-navigation/native"
+import { DarkTheme, DefaultTheme, NavigationContainer } from "@react-navigation/native"
 import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navigation/native-stack"
 import { observer } from "mobx-react-lite"
 import React from "react"
 import { useColorScheme } from "react-native"
 import * as Screens from "app/screens"
 import Config from "../config"
-import { useStores } from "../models"
 import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
 import { colors } from "app/theme"
 
@@ -35,7 +29,16 @@ import { colors } from "app/theme"
  */
 export type AppStackParamList = {
   Welcome: undefined
-  Login: undefined
+  PhotoPermissions: undefined
+  CameraAccess: undefined
+  ServerSetup: undefined
+  ServerConnection: undefined
+  Login: {
+    server: string
+    port: number
+  }
+  Dashboard: undefined
+  Debug: undefined
   // 🔥 Your screens go here
   // IGNITE_GENERATOR_ANCHOR_APP_STACK_PARAM_LIST
 }
@@ -58,20 +61,28 @@ const AppStack = observer(function AppStack() {
   // const {
   //   authenticationStore: { isAuthenticated },
   // } = useStores()
-  const isAuthenticated = true
+  const isAuthenticated = false
 
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false, navigationBarColor: colors.background }}
-      initialRouteName={isAuthenticated ? "Welcome" : "Login"}
+      initialRouteName={isAuthenticated ? "Debug" : "Login"}
     >
       {isAuthenticated ? (
         <>
-          <Stack.Screen name="Welcome" component={Screens.WelcomeScreen} />
+          <Stack.Screen name="Dashboard" component={Screens.DebugScreen} />
+          {/* <Stack.Screen name="Debug" component={Screens.DebugScreen} /> */}
         </>
       ) : (
         <>
+          <Stack.Screen name="Welcome" component={Screens.WelcomeScreen} />
+          <Stack.Screen name="PhotoPermissions" component={Screens.PhotoPermissionsScreen} />
+          <Stack.Screen name="CameraAccess" component={Screens.CameraAccessScreen} />
+          <Stack.Screen name="ServerSetup" component={Screens.ServerSetupScreen} />
+          <Stack.Screen name="ServerConnection" component={Screens.ServerConnectionScreen} />
           <Stack.Screen name="Login" component={Screens.LoginScreen} />
+
+          <Stack.Screen name="Dashboard" component={Screens.DebugScreen} />
         </>
       )}
 

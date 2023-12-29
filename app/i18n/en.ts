@@ -1,16 +1,76 @@
 const en = {
   common: {
-    ok: "OK!",
+    ok: "Okay!",
     cancel: "Cancel",
     back: "Back",
     logOut: "Log Out",
   },
   welcomeScreen: {
     headerPrefix: "Welcome to: ",
-    header: "Photo BackApp",
+    header: "PhotoBackApp",
     promise:
-      "We help you keep your photos and memories of loved ones safe by transparently uploading them app to upload them to the service of your choice",
+      "This app makes it easy to sync your photos and memories of loved ones organized on your computer or in the cloud.",
     getStarted: "Get Started",
+  },
+  photoPermissionScreen: {
+    header: "Access to Photos",
+    promiseDetail:
+      "To be able to upload your photos to your photo storage this app need to be able to read your photo library.",
+    promiseCTA: "This will require photo access",
+    buttonCTA: "Allow Photo Access",
+    buttonDisallow: "Disallow Photo Access",
+  },
+  cameraAccessScreen: {
+    header: "Connect & Authenticate",
+    promiseDetail:
+      "To authenticate you need to scan the presented QR-code with the camera on your phone",
+    promiseCTA: "This will require camera access",
+    buttonCTA: "Allow Camera Access",
+    buttonDisallow: "Disallow Camera Access",
+  },
+  serverSetupScreen: {
+    header: "Setup your computer",
+    promiseDetail:
+      "Install the PhotoBackApp on your Mac or PC desktop computer. You can find the software on our website:",
+    promiseCTA: "https://install.photoback.app",
+    buttonCTA: "My computer is set up",
+  },
+  serverConnectionScreen: {
+    header: "No connection",
+    details: "Make sure you are connected to the same WiFi as your computer.",
+    CTA: "Press a server below to connect",
+    statuses: {
+      notFound: "not found",
+      ready: "ready",
+      connecting: "connecting...",
+      connected: "connected",
+      comingSoon: "coming soon",
+    },
+    cloudOption: "PhotoBackApp Cloud",
+  },
+
+  loginScreen: {
+    header: "Connect & Authenticate",
+    promiseDetail:
+      "To connect your to your server you need to click “Add Device” on your desktop app and then scan the presented QR-code on this app.",
+    promiseCTA: "This will require camera access",
+    buttonCTA: "Allow Access",
+    buttonDisallow: "Disallow Access",
+  },
+  debugScreen: {
+    title: "Debug",
+    reactotron: "Send to Reactotron",
+    reportBugs: "Report Bugs",
+    androidReactotronHint:
+      "If this doesn't work, ensure the Reactotron desktop app is running, run adb reverse tcp:9090 tcp:9090 from your terminal, and reload the app.",
+    iosReactotronHint:
+      "If this doesn't work, ensure the Reactotron desktop app is running and reload app.",
+    macosReactotronHint:
+      "If this doesn't work, ensure the Reactotron desktop app is running and reload app.",
+    webReactotronHint:
+      "If this doesn't work, ensure the Reactotron desktop app is running and reload app.",
+    windowsReactotronHint:
+      "If this doesn't work, ensure the Reactotron desktop app is running and reload app.",
   },
   errorScreen: {
     title: "Something went wrong!",

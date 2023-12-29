@@ -1,19 +1,23 @@
 import React, { FC } from "react"
 import * as Application from "expo-application"
-import { Linking, Platform, TextStyle, View, ViewStyle } from "react-native"
+import { Alert, Linking, Platform, TextStyle, View, ViewStyle } from "react-native"
 import { Button, ListItem, Screen, Text } from "../components"
-import { DemoTabScreenProps } from "../navigators/DemoNavigator"
 import { colors, spacing } from "../theme"
 import { isRTL } from "../i18n"
 import { useStores } from "../models"
+import { AppStackScreenProps } from "app/navigators"
+import Clipboard from "@react-native-clipboard/clipboard"
 
 function openLinkInBrowser(url: string) {
   Linking.canOpenURL(url).then((canOpen) => canOpen && Linking.openURL(url))
 }
+interface DebugScreenProps extends AppStackScreenProps<"Dashboard"> {}
 
-export const DemoDebugScreen: FC<DemoTabScreenProps<"DemoDebug">> = function DemoDebugScreen(
-  _props,
-) {
+const copyToClipboard = (string: string) => {
+  Clipboard.setString(string)
+}
+
+export const DebugScreen: FC<DebugScreenProps> = function debugScreen(_props) {
   const {
     authenticationStore: { logout },
   } = useStores()
@@ -22,18 +26,20 @@ export const DemoDebugScreen: FC<DemoTabScreenProps<"DemoDebug">> = function Dem
   // @ts-expect-error
   const usingFabric = global.nativeFabricUIManager != null
 
-  const demoReactotron = React.useMemo(
+  const debugInfo = {
+    appId: Application.applicationId,
+    appName: Application.applicationName,
+    appVersion: Application.nativeApplicationVersion,
+    appBuildVersion: Application.nativeBuildVersion,
+    hermesEnabled: usingHermes,
+    fabricEnabled: usingFabric,
+  }
+  const Reactotron = React.useMemo(
     () => async () => {
       if (__DEV__) {
         console.tron.display({
           name: "DISPLAY",
-          value: {
-            appId: Application.applicationId,
-            appName: Application.applicationName,
-            appVersion: Application.nativeApplicationVersion,
-            appBuildVersion: Application.nativeBuildVersion,
-            hermesEnabled: usingHermes,
-          },
+          value: debugInfo,
           important: true,
         })
       }
@@ -45,10 +51,33 @@ export const DemoDebugScreen: FC<DemoTabScreenProps<"DemoDebug">> = function Dem
     <Screen preset="scroll" safeAreaEdges={["top"]} contentContainerStyle={$container}>
       <Text
         style={$reportBugsLink}
-        tx="demoDebugScreen.reportBugs"
-        onPress={() => openLinkInBrowser("https://github.com/infinitered/ignite/issues")}
+        tx="debugScreen.reportBugs"
+        onPress={() => {
+          copyToClipboard(`**I'm using this app:**
+          \n\`\`\`json
+          \n${JSON.stringify(debugInfo, null, 2)}
+          \n\`\`\`
+          \n**And I'm experiencing this problem:**
+          \n
+          \n**Steps to reproduce:**
+          \n1. Open the app
+          \n2. Do this
+          \n3. Do that`)
+          Alert.alert(
+            "Debug info copied to clipboard",
+            "Paste that in a new issue and describe your problem.",
+            [
+              { text: "Cancel", style: "cancel" },
+              {
+                text: "Open issues",
+                onPress: () =>
+                  openLinkInBrowser("https://github.com/StefanWallin/photobackapp/issues"),
+              },
+            ],
+          )
+        }}
       />
-      <Text style={$title} preset="heading" tx="demoDebugScreen.title" />
+      <Text style={$title} preset="heading" tx="debugScreen.title" />
       <View style={$itemsContainer}>
         <ListItem
           LeftComponent={
@@ -100,8 +129,8 @@ export const DemoDebugScreen: FC<DemoTabScreenProps<"DemoDebug">> = function Dem
         />
       </View>
       <View style={$buttonContainer}>
-        <Button style={$button} tx="demoDebugScreen.reactotron" onPress={demoReactotron} />
-        <Text style={$hint} tx={`demoDebugScreen.${Platform.OS}ReactotronHint` as const} />
+        <Button style={$button} tx="debugScreen.reactotron" onPress={Reactotron} />
+        <Text style={$hint} tx={`debugScreen.${Platform.OS}ReactotronHint` as const} />
       </View>
       <View style={$buttonContainer}>
         <Button style={$button} tx="common.logOut" onPress={logout} />

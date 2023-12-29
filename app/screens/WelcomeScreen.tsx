@@ -10,7 +10,7 @@ interface WelcomeScreenProps extends AppStackScreenProps<"Welcome"> {}
 
 export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeScreen(_props) {
   return (
-    <OnboardingWrapper length={5} currentIndex={0}>
+    <OnboardingWrapper length={6} currentIndex={0}>
       <>
         <Text preset="default" style={$text} tx="welcomeScreen.headerPrefix" />
         <Text preset="heading" style={$text} tx="welcomeScreen.header" />
@@ -18,8 +18,8 @@ export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeSc
         <Button
           testID="welcomeScreenButton"
           tx="welcomeScreen.getStarted"
-          preset="outlined"
-          onPress={() => _props.navigation.navigate("Login")}
+          preset="primary"
+          onPress={() => _props.navigation.navigate("PhotoPermissions")}
           style={{ marginTop: spacing.xxl }}
         />
       </>
@@ -29,4 +29,5 @@ export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeSc
 
 const $text: TextStyle = {
   marginVertical: spacing.xs,
+  textAlign: "center",
 }

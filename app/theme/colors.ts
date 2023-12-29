@@ -30,7 +30,7 @@ const palette = {
   accent400: "#FBC878",
   accent500: "#FFBB50",
 
-  angry100: "#F2D6CD",
+  angry100: "hsla(14, 100%, 50%, 0.2)",
   angry500: "#C03403",
 
   overlay20: "hsla(0, 0%, 100%, 0.2)",
@@ -67,7 +67,7 @@ export const colors = {
   /**
    * The main tinting color.
    */
-  tint: palette.primary500,
+  tint: palette.neutral900,
   /**
    * A subtle color used for lines.
    */

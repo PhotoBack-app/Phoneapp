@@ -2,13 +2,6 @@
 // markdown file and add links from here
 
 import { Platform } from "react-native"
-// import {
-//   SpaceGrotesk_300Light as spaceGroteskLight,
-//   SpaceGrotesk_400Regular as spaceGroteskRegular,
-//   SpaceGrotesk_500Medium as spaceGroteskMedium,
-//   SpaceGrotesk_600SemiBold as spaceGroteskSemiBold,
-//   SpaceGrotesk_700Bold as spaceGroteskBold,
-// } from "@expo-google-fonts/space-grotesk"
 
 import {
   Roboto_100Thin as Roboto100Thin,
@@ -50,20 +43,20 @@ export const customFontsToLoad = {
 
 const fonts = {
   roboto: {
-    thin: "Roboto_100Thin",
-    light: "Roboto_300Light",
-    normal: "Roboto_400Regular",
-    medium: "Roboto_500Medium",
-    semibold: "Roboto_700Bold",
-    bold: "Roboto_900Black",
+    thin: "Roboto100Thin",
+    light: "Roboto300Light",
+    normal: "Roboto400Regular",
+    medium: "Roboto500Medium",
+    semibold: "Roboto700Bold",
+    bold: "Roboto900Black",
   },
   robotoItalic: {
-    thin: "Roboto_100Thin_Italic",
-    light: "Roboto_300Light_Italic",
-    normal: "Roboto_400Regular_Italic",
-    medium: "Roboto_500Medium_Italic",
-    semibold: "Roboto_700Bold_Italic",
-    bold: "Roboto_900Black_Italic",
+    thin: "Roboto100ThinItalic",
+    light: "Roboto300LightItalic",
+    normal: "Roboto400RegularItalic",
+    medium: "Roboto500MediumItalic",
+    semibold: "Roboto700BoldItalic",
+    bold: "Roboto900BlackItalic",
   },
   helveticaNeue: {
     // iOS only font.
@@ -80,9 +73,9 @@ const fonts = {
     medium: "sans-serif-medium",
   },
   code: {
-    thin: "SourceCodePro_300Light",
-    normal: "SourceCodePro_400Regular",
-    bold: "SourceCodePro_600SemiBold",
+    thin: "SourceCodePro300Light",
+    normal: "SourceCodePro400Regular",
+    bold: "SourceCodePro600SemiBold",
   },
 }
 

@@ -88,7 +88,7 @@ export function Button(props: ButtonProps) {
     ...rest
   } = props
 
-  const preset: Presets = props.preset ?? "outlined"
+  const preset: Presets = props.preset ?? "primary"
   function $viewStyle({ pressed }: PressableStateCallbackType) {
     return [
       $viewPresets[preset],
@@ -137,7 +137,7 @@ const $baseViewStyle: ViewStyle = {
 const $baseTextStyle: TextStyle = {
   fontSize: 16,
   lineHeight: 20,
-  fontFamily: typography.primary.medium,
+  fontFamily: typography.primary.bold,
   textAlign: "center",
   flexShrink: 1,
   flexGrow: 0,
@@ -148,7 +148,7 @@ const $rightAccessoryStyle: ViewStyle = { marginStart: spacing.xs, zIndex: 1 }
 const $leftAccessoryStyle: ViewStyle = { marginEnd: spacing.xs, zIndex: 1 }
 
 const $viewPresets = {
-  outlined: [
+  primary: [
     $baseViewStyle,
     {
       borderWidth: 2,
@@ -157,33 +157,35 @@ const $viewPresets = {
     },
   ] as StyleProp<ViewStyle>,
 
-  filled: [$baseViewStyle, { backgroundColor: colors.palette.neutral300 }] as StyleProp<ViewStyle>,
-
-  reversed: [
+  secondary: [
     $baseViewStyle,
-    { backgroundColor: colors.palette.neutral800 },
+    { backgroundColor: colors.palette.neutral300 },
+  ] as StyleProp<ViewStyle>,
+
+  danger: [
+    $baseViewStyle,
+    {
+      borderWidth: 2,
+      borderColor: colors.palette.angry500,
+      backgroundColor: colors.palette.angry100,
+    },
   ] as StyleProp<ViewStyle>,
 }
 
 const $textPresets: Record<Presets, StyleProp<TextStyle>> = {
-  outlined: [
-    $baseTextStyle,
-    {
-      fontFamily: typography.primary.semibold,
-    },
-  ],
-  filled: $baseTextStyle,
-  reversed: [$baseTextStyle, { color: colors.palette.neutral100 }],
+  primary: [$baseTextStyle],
+  secondary: $baseTextStyle,
+  danger: [$baseTextStyle, { color: colors.palette.angry500 }],
 }
 
 const $pressedViewPresets: Record<Presets, StyleProp<ViewStyle>> = {
-  outlined: { backgroundColor: colors.palette.overlay50 },
-  filled: { backgroundColor: colors.palette.neutral400 },
-  reversed: { backgroundColor: colors.palette.neutral700 },
+  primary: { backgroundColor: colors.palette.overlay50 },
+  secondary: { backgroundColor: colors.palette.neutral400 },
+  danger: { backgroundColor: colors.palette.neutral700 },
 }
 
 const $pressedTextPresets: Record<Presets, StyleProp<TextStyle>> = {
-  outlined: { opacity: 0.9 },
-  filled: { opacity: 0.9 },
-  reversed: { opacity: 0.9 },
+  primary: { opacity: 0.9 },
+  secondary: { opacity: 0.9 },
+  danger: { opacity: 0.9 },
 }
