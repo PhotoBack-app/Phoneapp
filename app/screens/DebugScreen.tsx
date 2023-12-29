@@ -17,10 +17,14 @@ const copyToClipboard = (string: string) => {
   Clipboard.setString(string)
 }
 
-export const DebugScreen: FC<DebugScreenProps> = function debugScreen(_props) {
+export const DebugScreen: FC<DebugScreenProps> = function debugScreen(props) {
   const {
     authenticationStore: { logout },
   } = useStores()
+
+  const back = () => {
+    props.navigation.navigate("Welcome")
+  }
 
   const usingHermes = typeof HermesInternal === "object" && HermesInternal !== null
   // @ts-expect-error
@@ -134,6 +138,7 @@ export const DebugScreen: FC<DebugScreenProps> = function debugScreen(_props) {
       </View>
       <View style={$buttonContainer}>
         <Button style={$button} tx="common.logOut" onPress={logout} />
+        <Button style={$button} text="Tillbaka" onPress={back} />
       </View>
     </Screen>
   )
