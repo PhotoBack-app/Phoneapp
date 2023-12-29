@@ -1,3 +1,25 @@
+## TODO:
+
+- [ ] Tie in photo library permissions to PhotoPermissionScreen
+- [ ] Tie in camera permissions to CameraAccessScreen
+- [ ] Tie in QR code scanner to LoginScreen
+- [ ] Copy over server discovery from previous app version
+- [ ] Copy over server connection and authentication from previous app version
+- [ ] Make onboarding screens appear on start depending on how far you've come
+- [ ] Create data model for servers
+- [ ] Create data model for sessions
+- [ ] Create data model for photo upload status
+- [ ] Create dashboard screen
+- [ ] Upload to server with Tus.io-based upload
+- [ ] Add splash screen
+- [ ] Add app icon
+
+---
+
+```
+  ORIGINAL IGNITE 9.2.0 README.md
+```
+
 # Welcome to your new ignited app!
 
 [![CircleCI](https://circleci.com/gh/infinitered/ignite.svg?style=svg)](https://circleci.com/gh/infinitered/ignite)
