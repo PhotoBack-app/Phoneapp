@@ -14,6 +14,7 @@ export const PhotoPermissionsScreen: FC<PhotoPermissionsScreenProps> = observer(
   function PhotoPermissionsScreen(props) {
     const [permissionResponse, requestPermission] = MediaLibrary.usePermissions()
     const permissionStatus = permissionResponse?.accessPrivileges
+    const canAskAgain = permissionResponse?.canAskAgain ?? true
     useEffect(() => {
       switch (permissionStatus) {
         // 'all'
@@ -35,7 +36,7 @@ export const PhotoPermissionsScreen: FC<PhotoPermissionsScreenProps> = observer(
       <OnboardingWrapper length={6} currentIndex={1}>
         <>
           <Text preset="heading" style={$text} tx="photoPermissionScreen.header" />
-          {permissionStatus === "none" && (
+          {permissionStatus === "none" && !canAskAgain && (
             <>
               <Text preset="default" style={$text} tx="photoPermissionScreen.noPermissionDetail" />
               <Text preset="bold" style={$text} tx="photoPermissionScreen.noPermissionCTA" />
@@ -47,7 +48,7 @@ export const PhotoPermissionsScreen: FC<PhotoPermissionsScreenProps> = observer(
               />
             </>
           )}
-          {permissionStatus !== "none" && (
+          {(permissionStatus !== "none" || canAskAgain) && (
             <>
               <Text preset="default" style={$text} tx="photoPermissionScreen.promiseDetail" />
               <Text preset="bold" style={$text} tx="photoPermissionScreen.promiseCTA" />
