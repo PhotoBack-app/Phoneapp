@@ -1,7 +1,7 @@
 ## TODO:
 
-- [ ] Tie in photo library permissions to PhotoPermissionScreen
-- [ ] Tie in camera permissions to CameraAccessScreen
+- [x] Tie in photo library permissions to PhotoPermissionScreen
+- [x] Tie in camera permissions to CameraAccessScreen
 - [ ] Tie in QR code scanner to LoginScreen
 - [ ] Copy over server discovery from previous app version
 - [ ] Copy over server connection and authentication from previous app version
@@ -13,6 +13,10 @@
 - [ ] Upload to server with Tus.io-based upload
 - [ ] Add splash screen
 - [ ] Add app icon
+
+## Android Bugs:
+
+- [ ] PhotoPermissionScreen: App does not detect that permission has been granted
 
 ---
 

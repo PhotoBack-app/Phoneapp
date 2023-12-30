@@ -20,7 +20,21 @@ const sv: Translations = {
       "För att kunna ladda upp dina foton till din dator behöver appen kunna läsa ditt fotobibliotek.",
     promiseCTA: "Denna app behöver dina foton",
     buttonCTA: "Tillåt åtkomst",
-    buttonDisallow: "Neka åtkomst",
+    noPermissionDetail:
+      "Du har begränsat åtkomsten till ditt fotobibliotek. Detta kommer att förhindra appen från att ladda upp dina foton.",
+    noPermissionCTA: "Du måste ändra detta i inställningarna.",
+    noPermissionButtonCTA: "Öppna inställningar",
+  },
+  cameraAccessScreen: {
+    header: "Tillgång till kameran",
+    promiseDetail:
+      "För att autentisera dig behöver du skanna den presenterade QR-koden med kameran på din telefon",
+    promiseCTA: "Detta kräver kameraåtkomst",
+    buttonCTA: "Tillåt kameraåtkomst",
+    noPermissionDetail:
+      "Du har begränsat åtkomsten till din kamera. Detta kommer att förhindra appen från att autentisera dig.",
+    noPermissionCTA: "Du måste ändra detta i inställningarna.",
+    noPermissionButtonCTA: "Öppna inställningar",
   },
   serverSetupScreen: {
     header: "Installera på din dator",
@@ -41,6 +55,13 @@ const sv: Translations = {
       comingSoon: "kommer snart",
     },
     cloudOption: "PhotoBackApp Cloud",
+  },
+  loginScreen: {
+    header: "Anslut & autentisera",
+    promiseDetail:
+      "För att ansluta till din server måste du klicka på “Lägg till enhet” i din skrivbordsapp och sedan skanna den presenterade QR-koden i denna app.",
+    promiseCTA: "Denna app behöver dina foton",
+    buttonCTA: "Tillåt åtkomst",
   },
   debugScreen: {
     title: "Debug",

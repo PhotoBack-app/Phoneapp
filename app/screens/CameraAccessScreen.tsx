@@ -1,6 +1,8 @@
 import { observer } from "mobx-react-lite"
 import React, { ComponentType, FC, useEffect, useMemo, useRef, useState } from "react"
 import { Pressable, TextInput, TextStyle, ViewStyle } from "react-native"
+import { BarCodeScanner, PermissionStatus } from "expo-barcode-scanner"
+import * as Linking from "expo-linking"
 import { Button, Icon, Screen, Text, TextField, TextFieldAccessoryProps } from "../components"
 import { useStores } from "../models"
 import { AppStackScreenProps } from "../navigators"
@@ -10,28 +12,44 @@ import OnboardingWrapper from "app/components/OnboardingWrapper"
 interface CameraAccessScreenProps extends AppStackScreenProps<"CameraAccess"> {}
 
 export const CameraAccessScreen: FC<CameraAccessScreenProps> = observer(function CameraAccessScreen(
-  _props,
+  props,
 ) {
+  const [permissionResponse, requestPermission] = BarCodeScanner.usePermissions()
+  const permissionStatus = permissionResponse?.status || PermissionStatus.UNDETERMINED
+  useEffect(() => {
+    if (permissionStatus === PermissionStatus.GRANTED) {
+      props.navigation.navigate("ServerSetup")
+    }
+  }, [permissionStatus])
   return (
     <OnboardingWrapper length={6} currentIndex={2}>
       <>
         <Text preset="heading" style={$text} tx="cameraAccessScreen.header" size="xl" />
-        <Text preset="default" style={$text} tx="cameraAccessScreen.promiseDetail" />
-        <Text preset="bold" style={$text} tx="cameraAccessScreen.promiseCTA" />
-        <Button
-          testID="PhotoPermissionsScreenButton"
-          tx="cameraAccessScreen.buttonCTA"
-          preset="primary"
-          onPress={() => _props.navigation.navigate("ServerSetup")}
-          style={{ marginTop: spacing.xxl }}
-        />
-        <Button
-          testID="PhotoPermissionsScreenButton"
-          tx="cameraAccessScreen.buttonDisallow"
-          preset="danger"
-          onPress={() => _props.navigation.navigate("CameraAccess")}
-          style={{ marginTop: spacing.md }}
-        />
+        {permissionStatus === PermissionStatus.UNDETERMINED && (
+          <>
+            <Text preset="default" style={$text} tx="cameraAccessScreen.promiseDetail" />
+            <Text preset="bold" style={$text} tx="cameraAccessScreen.promiseCTA" />
+
+            <Button
+              tx="cameraAccessScreen.buttonCTA"
+              preset="primary"
+              onPress={requestPermission}
+              style={{ marginTop: spacing.xxl }}
+            />
+          </>
+        )}
+        {permissionStatus === PermissionStatus.DENIED && (
+          <>
+            <Text preset="default" style={$text} tx="cameraAccessScreen.noPermissionDetail" />
+            <Text preset="bold" style={$text} tx="cameraAccessScreen.noPermissionCTA" />
+            <Button
+              tx="cameraAccessScreen.noPermissionButtonCTA"
+              preset="primary"
+              onPress={Linking.openSettings}
+              style={{ marginTop: spacing.xxl }}
+            />
+          </>
+        )}
       </>
     </OnboardingWrapper>
   )

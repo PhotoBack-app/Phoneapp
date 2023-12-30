@@ -36,13 +36,13 @@ const DevButtons: FC = observer(function DevButtons() {
     <>
       <Button
         text="Trigger Success"
-        preset="primary"
+        preset="secondary"
         onPress={onSuccess}
         style={{ marginTop: spacing.md }}
       />
       <Button
         text="Trigger Fail"
-        preset="danger"
+        preset="secondary"
         onPress={onFail}
         style={{ marginTop: spacing.md }}
       />

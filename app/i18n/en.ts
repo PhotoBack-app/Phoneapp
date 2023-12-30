@@ -18,15 +18,21 @@ const en = {
       "To be able to upload your photos to your photo storage this app need to be able to read your photo library.",
     promiseCTA: "This will require photo access",
     buttonCTA: "Allow Photo Access",
-    buttonDisallow: "Disallow Photo Access",
+    noPermissionDetail:
+      "You have limited the access to your media library. This will prevent the app from uploading your photos.",
+    noPermissionCTA: "You have to change this in settings.",
+    noPermissionButtonCTA: "Open Settings",
   },
   cameraAccessScreen: {
-    header: "Connect & Authenticate",
+    header: "Accesss to Camera",
     promiseDetail:
       "To authenticate you need to scan the presented QR-code with the camera on your phone",
     promiseCTA: "This will require camera access",
     buttonCTA: "Allow Camera Access",
-    buttonDisallow: "Disallow Camera Access",
+    noPermissionDetail:
+      "You have limited the access to your camera. This will prevent the app from authenticating.",
+    noPermissionCTA: "You have to change this in settings.",
+    noPermissionButtonCTA: "Open Settings",
   },
   serverSetupScreen: {
     header: "Setup your computer",
@@ -48,14 +54,12 @@ const en = {
     },
     cloudOption: "PhotoBackApp Cloud",
   },
-
   loginScreen: {
     header: "Connect & Authenticate",
     promiseDetail:
       "To connect your to your server you need to click “Add Device” on your desktop app and then scan the presented QR-code on this app.",
     promiseCTA: "This will require camera access",
     buttonCTA: "Allow Access",
-    buttonDisallow: "Disallow Access",
   },
   debugScreen: {
     title: "Debug",
