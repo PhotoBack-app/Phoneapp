@@ -32,6 +32,10 @@
       }
     },
     "ios": {
+      "infoPlist": {
+        "NSBonjourServices": ["_photobackapp._tcp"],
+        "NSLocalNetworkUsageDescription": "This app needs access to the local network to discover and connect to local PhotoBackApp targets"
+      },
       "icon": "./assets/images/app-icon-ios.png",
       "supportsTablet": true,
       "bundleIdentifier": "app.photoback",
