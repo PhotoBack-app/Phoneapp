@@ -6,78 +6,59 @@ import { AppStackScreenProps } from "../navigators"
 import { spacing } from "../theme"
 import OnboardingWrapper from "app/components/OnboardingWrapper"
 import { t } from "i18n-js"
-import ServerDiscovery from "app/services/ServerDiscovery"
+import { Server, useServerDiscovery } from "app/services/serverDiscovery/useServerDiscovery"
 
 interface ServerConnectionScreenProps extends AppStackScreenProps<"ServerConnection"> {}
 
-const ServerDiscoveryInstance = new ServerDiscovery()
-
-type Server = {
-  id: string
-  name: string
-  address: string
-  port: number
-  status: "ready" | "notFound" | "comingSoon" | "connecting" | "connected"
-  disabled?: boolean
-}
+// type Server = {
+//   guid: string
+//   name: string
+//   host: string
+//   port: number
+//   status: "ready" | "notFound" | "comingSoon" | "connecting" | "connected"
+//   disabled?: boolean
+// }
 // const servers: Server[] = [
 //   {
-//     id: "1",
+//     guid: "1",
 //     name: "Marys Macbook Pro",
-//     address: "marys-macbook-pro.local",
+//     host: "marys-macbook-pro.local",
 //     port: 8080,
 //     status: "notFound",
 //   },
 //   {
-//     id: "2",
+//     guid: "2",
 //     name: "Marys PC",
-//     address: "192.168.18.1",
+//     host: "192.168.18.1",
 //     port: 8080,
 //     status: "ready",
 //   },
 //   {
-//     id: "3",
+//     guid: "3",
 //     name: t("serverConnectionScreen.cloudOption"),
-//     address: "cloud.photoback.app",
+//     host: "cloud.photoback.app",
 //     port: 80,
 //     disabled: true,
 //     status: "comingSoon",
 //   },
 // ]
-type ServerDiscoveryEvent = {
-  status: string
-  result: any
-}
-const updates: ServerDiscoveryEvent[] = []
 
 export const ServerConnectionScreen: FC<ServerConnectionScreenProps> = observer(
   function ServerConnectionScreen(props) {
     const navigation = props.navigation
-
-    React.useEffect(() => {
-      updates.splice(0, updates.length)
-      ServerDiscoveryInstance.startScan((status, result) => {
-        updates.push({ status, result })
-      })
-      return () => {
-        ServerDiscoveryInstance.stopScan()
-      }
-    }, [])
-
+    const result = useServerDiscovery()
     const onServerPress = (item: Server) => {
-      navigation.navigate("Login", { server: item.address, port: item.port })
+      console.log("ATTEMPTING LOGIN FOR SERVER", item)
+      navigation.navigate("Login", { server: item.host, port: item.port })
     }
     return (
       <OnboardingWrapper length={6} currentIndex={4}>
         <View>
           <Text preset="heading" style={$text} tx="serverConnectionScreen.header" />
           <Text preset="default" style={$text} tx="serverConnectionScreen.details" />
-          {/* <Text preset="bold" style={$text} tx="serverConnectionScreen.CTA" />
-          {servers.map((item, index) => {
-            return <ServerItem key={item.id} item={item} index={index} onPress={onServerPress} />
-          })} */}
-          {updates.map((item, index) => {
-            return <Text key={`update-${index}`} text={JSON.stringify(item)} />
+          <Text preset="bold" style={$text} tx="serverConnectionScreen.CTA" />
+          {result.servers.map((item) => {
+            return <ServerItem key={item.guid} item={item} onPress={onServerPress} />
           })}
         </View>
       </OnboardingWrapper>
@@ -87,10 +68,9 @@ export const ServerConnectionScreen: FC<ServerConnectionScreenProps> = observer(
 
 type ServerItemProps = {
   item: Server
-  index: number
   onPress: (item: Server) => void
 }
-const ServerItem = ({ item, index, onPress }: ServerItemProps) => {
+const ServerItem = ({ item, onPress }: ServerItemProps) => {
   const disabled = item.disabled || false
   const $itemStyle = [$lineWrapperItem]
   if (disabled) {
@@ -102,7 +82,7 @@ const ServerItem = ({ item, index, onPress }: ServerItemProps) => {
   const Left = (
     <View>
       <Text style={$itemStyle} preset="bold" text={item.name} size="md" />
-      <Text style={$itemStyle} preset="default" text={item.address} size="xs" />
+      <Text style={$itemStyle} preset="default" text={item.host} size="xs" />
     </View>
   )
   const Right = (
@@ -116,10 +96,10 @@ const ServerItem = ({ item, index, onPress }: ServerItemProps) => {
   return (
     <ListItem
       disabled={disabled}
-      key={`serverListed-${item.id}`}
+      key={`serverListed-${item.guid}`}
       onPress={onListItemPress}
-      topSeparator={index !== 0}
-      bottomSeparator={false}
+      topSeparator={true}
+      bottomSeparator={true}
       containerStyle={$lineWrapper}
       LeftComponent={Left}
       RightComponent={Right}
@@ -129,6 +109,7 @@ const ServerItem = ({ item, index, onPress }: ServerItemProps) => {
 
 const $lineWrapper: ViewStyle = {
   paddingVertical: spacing.sm,
+  marginTop: -1,
 }
 
 const $lineWrapperItem: TextStyle = {

@@ -2503,6 +2503,13 @@
   resolved "https://registry.yarnpkg.com/@types/qs/-/qs-6.9.11.tgz#208d8a30bc507bd82e03ada29e4732ea46a6bbda"
   integrity sha512-oGk0gmhnEJK4Yyk+oI7EfXsLayXatCWPHary1MtcmbAifkobT9cM9yutG/hZKIseOU0MqbIwQ/u2nn/Gb+ltuQ==
 
+"@types/react-native-zeroconf@^0.12.3":
+  version "0.12.3"
+  resolved "https://registry.yarnpkg.com/@types/react-native-zeroconf/-/react-native-zeroconf-0.12.3.tgz#543753b647e8134f22433cb701052e1cb4653275"
+  integrity sha512-IV9BSqbVf+I8ZNLMd4Vc8O3GPc4RVkHTlkGq7lHXaSd3egGZ9v2yoeNTZM2DNTNmFGb18Xn3mSYfAM8BkYLU1A==
+  dependencies:
+    "@types/node" "*"
+
 "@types/react-test-renderer@^18.0.0":
   version "18.0.7"
   resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-18.0.7.tgz#2cfe657adb3688cdf543995eceb2e062b5a68728"
