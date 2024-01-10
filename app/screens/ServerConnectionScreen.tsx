@@ -81,8 +81,13 @@ const ServerItem = ({ item, onPress }: ServerItemProps) => {
   }
   const Left = (
     <View>
-      <Text style={$itemStyle} preset="bold" text={item.name} size="md" />
-      <Text style={$itemStyle} preset="default" text={item.host} size="xs" />
+      <Text style={$itemStyle} preset="bold" text={item.name} size="s" />
+      <Text
+        style={$itemStyle}
+        preset="default"
+        text={t(`serverConnectionScreen.statuses.${item.status}`)}
+        size="xs"
+      />
     </View>
   )
   const Right = (

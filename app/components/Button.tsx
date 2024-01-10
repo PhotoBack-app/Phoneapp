@@ -89,11 +89,13 @@ export function Button(props: ButtonProps) {
   } = props
 
   const preset: Presets = props.preset ?? "primary"
+  const disabled = props.disabled ?? false
   function $viewStyle({ pressed }: PressableStateCallbackType) {
     return [
       $viewPresets[preset],
       $viewStyleOverride,
       !!pressed && [$pressedViewPresets[preset], $pressedViewStyleOverride],
+      { opacity: disabled ? 0.6 : 1 },
     ]
   }
   function $textStyle({ pressed }: PressableStateCallbackType) {
@@ -101,6 +103,7 @@ export function Button(props: ButtonProps) {
       $textPresets[preset],
       $textStyleOverride,
       !!pressed && [$pressedTextPresets[preset], $pressedTextStyleOverride],
+      { opacity: disabled ? 0.6 : 1 },
     ]
   }
 

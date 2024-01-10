@@ -74,7 +74,23 @@ export class Api {
       return { kind: "bad-data" }
     }
   }
+
+  async connectToServer(): Promise<{ kind: "ok"; data: any } | GeneralApiProblem> {
+    const response: ApiResponse<any> = await this.apisauce.get(`/`)
+    if (!response.ok) {
+      const problem = getGeneralApiProblem(response)
+      if (problem) return problem
+    }
+    try {
+      return { kind: "ok", data: response.data }
+    } catch (e) {
+      if (__DEV__ && e instanceof Error) {
+        console.error(`Bad data: ${e.message}\n${response.data}`, e.stack)
+      }
+      return { kind: "bad-data" }
+    }
+  }
 }
 
 // Singleton instance of the API for convenience
-export const api = new Api()
+// export const api = new Api()

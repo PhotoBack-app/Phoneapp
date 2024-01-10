@@ -19,11 +19,11 @@ export const PhotoPermissionsScreen: FC<PhotoPermissionsScreenProps> = observer(
       switch (permissionStatus) {
         // 'all'
         case "all":
-          props.navigation.navigate("CameraAccess")
+          props.navigation.replace("CameraAccess")
           break
         // 'limited'
         case "limited":
-          props.navigation.navigate("CameraAccess")
+          props.navigation.replace("CameraAccess")
           break
         // 'none'
         case "none":

@@ -18,7 +18,7 @@ export const CameraAccessScreen: FC<CameraAccessScreenProps> = observer(function
   const permissionStatus = permissionResponse?.status || PermissionStatus.UNDETERMINED
   useEffect(() => {
     if (permissionStatus === PermissionStatus.GRANTED) {
-      props.navigation.navigate("ServerSetup")
+      props.navigation.replace("ServerSetup")
     }
   }, [permissionStatus])
   return (

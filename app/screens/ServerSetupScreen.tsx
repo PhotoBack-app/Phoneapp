@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite"
-import React, { FC } from "react"
+import React, { FC, useEffect } from "react"
 import { TextStyle } from "react-native"
 import { Button, Text } from "app/components"
 import { AppStackScreenProps } from "../navigators"
@@ -11,6 +11,13 @@ interface ServerSetupScreenProps extends AppStackScreenProps<"ServerSetup"> {}
 export const ServerSetupScreen: FC<ServerSetupScreenProps> = observer(function ServerSetupScreen(
   _props,
 ) {
+  const [enabled, setEnabled] = React.useState(false)
+  useEffect(() => {
+    setTimeout(() => {
+      // Make sure to not make button clickable immediately and force a read of the text
+      setEnabled(true)
+    }, 8000)
+  }, [])
   return (
     <OnboardingWrapper length={6} currentIndex={3}>
       <>
@@ -21,8 +28,8 @@ export const ServerSetupScreen: FC<ServerSetupScreenProps> = observer(function S
           testID="ServerSetupScreenButton"
           tx="serverSetupScreen.buttonCTA"
           preset="primary"
+          disabled={!enabled}
           onPress={() => _props.navigation.navigate("ServerConnection")}
-          style={{ marginTop: spacing.xxl }}
         />
       </>
     </OnboardingWrapper>

@@ -19,7 +19,7 @@ export const WelcomeScreen: FC<WelcomeScreenProps> = observer(function WelcomeSc
           testID="welcomeScreenButton"
           tx="welcomeScreen.getStarted"
           preset="primary"
-          onPress={() => _props.navigation.navigate("PhotoPermissions")}
+          onPress={() => _props.navigation.replace("PhotoPermissions")}
           style={{ marginTop: spacing.xxl }}
         />
       </>
