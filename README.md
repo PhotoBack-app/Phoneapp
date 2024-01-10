@@ -31,14 +31,14 @@ PhotoBackApp is intended to help you organize, collect and take control of your 
 ![Architecture OverView](assets/images/Overview.png)
 
 - Phone app is a React Native app
-- Computer app is an Electron app
+- Computer app is an Electron app with sidecar agent
 - Phone finds computer using MDNS/Bonjour
 - Phone retrieves JWT from computer using scanned QR code
 - Phone uploads photos to computer using Tus.io protocol
-- Computer stores photos in a folder structure with dates
-- Computer serves photos to filesystem using FuseFS
-- Organizational changes or machine learning models are applied to photos and metadata is updated
-- Computer can backup photos to 3rd party services continously
+- Agent stores photos in a folder structure with dates
+- Agent serves photos to filesystem using FuseFS
+- Electron App can be user to do organizational changes or apply machine learning models. Changes are applied to the photos and their metadata is updated
+- Agent can backup photos to 3rd party services continously
 - Use filesystem native tools such as Searching, Viewing, previewing and navigating. (Finder is our main UI)
 
 ## Status
@@ -51,10 +51,9 @@ PhotoBackApp is intended to help you organize, collect and take control of your 
 - How to store complex metadata not previously defined in exif data, such as people, events, places, tags, etc.?
 - How to find events based on time and location? (multiple photos taken at same time and location)
 - How to find people based on facial recognition? (multiple photos of same person)
-- How to get desktop app performant with exif being primary data store
+- How to get desktop app or FuseFS performant with exif being primary data store
 - How to enable on-the-go background uploads of photos without having to have a relay server (TUN/STUN/TURN-thingie)
 - How to UX-handle multiple croppings and sizes of same image
-- How to UX-handle
 
 ### Proven elsewhere:
 
