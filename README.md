@@ -1,6 +1,6 @@
-![Alt text](assets/images/PhotobackLogo/PhotoBackLogo.png)
-
 # [PhotoBack.app](PhotoBack.app)
+
+![Alt text](assets/images/PhotobackLogo/PhotoBackLogo.png)
 
 ## What is this?
 
