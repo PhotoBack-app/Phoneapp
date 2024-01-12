@@ -2,6 +2,9 @@
 
 ![Alt text](assets/images/PhotobackLogo/PhotoBackLogo.png)
 
+> [!NOTE]
+> This is a early "works on my phone" stage and thus have only been tested on my iPhone 13 mini running iOS 17.1.2
+
 ## What is this?
 
 PhotoBackApp is intended to help you organize, collect and take control of your memories (photos primarily) in a way that is easy, secure and private and not dependent on any cloud service.
